@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .category.name }} - {{ .blog_title }}</title>
+  <meta name="description" content="{{ .category.name }} 分类下的文章">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">{{ .category.name }}</h1>
+      {{- if .category.description }}
+      <p class="text-gray-600 dark:text-gray-400">{{ .category.description }}</p>
+      {{- end }}
+      <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">共 {{ .category.postCount }} 篇文章</p>
+    </div>
+
+    {{- if .posts }}
+    <div class="space-y-6">
+      {{- range .posts }}
+      {{- template "module/post-entry.tmpl" . }}
+      {{- end }}
+    </div>
+
+    {{- if or .prevPageFullPath .nextPageFullPath }}
+    <div class="flex justify-between items-center mt-12">
+      {{- if .prevPageFullPath }}
+      <a href="{{ .prevPageFullPath }}" class="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded hover:bg-gray-700 dark:hover:bg-gray-200">
+        ← 上一页
+      </a>
+      {{- else }}
+      <div></div>
+      {{- end }}
+
+      {{- if .nextPageFullPath }}
+      <a href="{{ .nextPageFullPath }}" class="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded hover:bg-gray-700 dark:hover:bg-gray-200">
+        下一页 →
+      </a>
+      {{- else }}
+      <div></div>
+      {{- end }}
+    </div>
+    {{- end }}
+    {{- else }}
+    <div class="text-center py-12">
+      <p class="text-gray-600 dark:text-gray-400">该分类下暂无文章</p>
+    </div>
+    {{- end }}
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .post.title }} - {{ .blog_title }}</title>
+  <meta name="description" content="{{ .post.summary }}">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <article class="max-w-3xl mx-auto">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ .post.title }}</h1>
+
+        <div class="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+          <time datetime="{{ .post.createTime }}">{{ .post.createTime | date "2006-01-02" }}</time>
+          {{- if .post.categories }}
+          <span>·</span>
+          <div class="flex items-center space-x-2">
+            {{- range .post.categories }}
+            <a href="{{ .fullPath }}" class="hover:text-gray-900 dark:hover:text-white">{{ .name }}</a>
+            {{- end }}
+          </div>
+          {{- end }}
+          {{- if .post.wordCount }}
+          <span>·</span>
+          <span>{{ .post.wordCount }} 字</span>
+          {{- end }}
+        </div>
+
+        {{- if .post.tags }}
+        <div class="flex items-center space-x-2 mt-4">
+          {{- range .post.tags }}
+          <a href="{{ .fullPath }}" class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600">
+            #{{ .name }}
+          </a>
+          {{- end }}
+        </div>
+        {{- end }}
+      </header>
+
+      {{- if .post.thumbnail }}
+      <img src="{{ .post.thumbnail }}" alt="{{ .post.title }}" class="w-full rounded-lg mb-8">
+      {{- end }}
+
+      <div class="post-content prose dark:prose-invert max-w-none">
+        {{ .post.formatContent | safe }}
+      </div>
+
+      {{- if or .prevPost .nextPost }}
+      <nav class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {{- if .prevPost }}
+          <a href="{{ .prevPost.fullPath }}" class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">← 上一篇</div>
+            <div class="font-medium text-gray-900 dark:text-white">{{ .prevPost.title }}</div>
+          </a>
+          {{- end }}
+
+          {{- if .nextPost }}
+          <a href="{{ .nextPost.fullPath }}" class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-right">
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">下一篇 →</div>
+            <div class="font-medium text-gray-900 dark:text-white">{{ .nextPost.title }}</div>
+          </a>
+          {{- end }}
+        </div>
+      </nav>
+      {{- end }}
+    </article>
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

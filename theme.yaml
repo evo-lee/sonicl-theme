@@ -1,0 +1,29 @@
+id: luolei-theme
+name: Luolei Theme
+author:
+  name: Luolei
+  website: https://github.com/foru17/luoleiorg-x
+description: A modern, minimalist theme ported from luoleiorg-x (Next.js) to Sonic
+logo:
+website: https://github.com/foru17/luoleiorg-x
+repo: https://github.com/foru17/luoleiorg-x
+version: 1.0.0
+require: 1.0.0
+postMetaField:
+  - post_author
+  - post_categories
+  - post_date
+  - post_tags
+  - post_wordcount
+customTemplates:
+  post:
+  sheet:
+  category:
+  tag:
+config:
+  post_meta:
+    - name: music_url
+      label: 音乐地址
+      type: text
+      description: 文章背景音乐地址
+  sheet_meta:

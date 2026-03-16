@@ -1,0 +1,30 @@
+<header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+  <div class="container-custom py-6">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        {{- if .settings.site_logo }}
+        <a href="{{ .blog_url }}" class="flex items-center">
+          <img src="{{ .settings.site_logo }}" alt="{{ .blog_title }}" class="h-10">
+        </a>
+        {{- else }}
+        <a href="{{ .blog_url }}" class="text-2xl font-bold text-gray-900 dark:text-white">
+          {{ .blog_title }}
+        </a>
+        {{- end }}
+      </div>
+
+      <nav class="flex items-center space-x-6">
+        <a href="{{ .blog_url }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">首页</a>
+        <a href="{{ .blog_url }}/archives" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">归档</a>
+        <a href="{{ .blog_url }}/categories" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">分类</a>
+        <a href="{{ .blog_url }}/tags" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">标签</a>
+
+        <button id="dark-mode-toggle" class="p-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>

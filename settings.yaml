@@ -1,0 +1,86 @@
+general:
+  label: 通用设置
+  items:
+    - name: site_logo
+      label: 站点 Logo
+      type: text
+      default: ''
+      description: 站点 Logo 图片 URL
+    - name: site_favicon
+      label: 站点 Favicon
+      type: text
+      default: ''
+      description: 站点 Favicon 图片 URL
+    - name: footer_text
+      label: 页���文本
+      type: textarea
+      default: '© 2024 Powered by Sonic'
+      description: 页脚显示的文本内容
+
+style:
+  label: 样式设置
+  items:
+    - name: primary_color
+      label: 主题色
+      type: color
+      default: '#000000'
+      description: 主题主色调
+    - name: enable_dark_mode
+      label: 启用暗色模式
+      type: radio
+      data-type: bool
+      default: 'true'
+      options:
+        - value: 'true'
+          label: 启用
+        - value: 'false'
+          label: 禁用
+
+layout:
+  label: 布局设置
+  items:
+    - name: posts_per_page
+      label: 每页文章数
+      type: text
+      default: '10'
+      description: 首页和归档页每页显示的文章数量
+    - name: show_post_thumbnail
+      label: 显示文章缩略图
+      type: radio
+      data-type: bool
+      default: 'true'
+      options:
+        - value: 'true'
+          label: 显示
+        - value: 'false'
+          label: 隐藏
+
+social:
+  label: 社交链接
+  items:
+    - name: github_url
+      label: GitHub
+      type: text
+      default: ''
+    - name: twitter_url
+      label: Twitter
+      type: text
+      default: ''
+    - name: email
+      label: Email
+      type: text
+      default: ''
+
+advanced:
+  label: 高级设置
+  items:
+    - name: custom_head
+      label: 自定义 Head 代码
+      type: textarea
+      default: ''
+      description: 在 </head> 前插入的自定义代码
+    - name: custom_footer
+      label: 自定义页脚代码
+      type: textarea
+      default: ''
+      description: 在 </body> 前插入的自定义代码

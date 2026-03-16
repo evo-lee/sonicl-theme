@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>归档 - {{ .blog_title }}</title>
+  <meta name="description" content="文章归档">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">归档</h1>
+
+    {{- if .archives }}
+    <div class="space-y-8">
+      {{- range .archives }}
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ .year }} 年</h2>
+        <div class="space-y-4">
+          {{- range .posts }}
+          <div class="flex items-baseline space-x-4">
+            <time class="text-sm text-gray-600 dark:text-gray-400 flex-shrink-0">
+              {{ .createTime | date "01-02" }}
+            </time>
+            <a href="{{ .fullPath }}" class="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300">
+              {{ .title }}
+            </a>
+          </div>
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
+    </div>
+    {{- else }}
+    <div class="text-center py-12">
+      <p class="text-gray-600 dark:text-gray-400">暂无归档</p>
+    </div>
+    {{- end }}
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .sheet.title }} - {{ .blog_title }}</title>
+  <meta name="description" content="{{ .sheet.summary }}">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <article class="max-w-3xl mx-auto">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ .sheet.title }}</h1>
+      </header>
+
+      {{- if .sheet.thumbnail }}
+      <img src="{{ .sheet.thumbnail }}" alt="{{ .sheet.title }}" class="w-full rounded-lg mb-8">
+      {{- end }}
+
+      <div class="post-content prose dark:prose-invert max-w-none">
+        {{ .sheet.formatContent | safe }}
+      </div>
+    </article>
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>所有标签 - {{ .blog_title }}</title>
+  <meta name="description" content="所有文章标签">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">所有标签</h1>
+
+    {{- if .tags }}
+    <div class="flex flex-wrap gap-3">
+      {{- range .tags }}
+      <a href="{{ .fullPath }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <span class="text-gray-900 dark:text-white font-medium">#{{ .name }}</span>
+        <span class="ml-2 text-sm text-gray-500 dark:text-gray-500">({{ .postCount }})</span>
+      </a>
+      {{- end }}
+    </div>
+    {{- else }}
+    <div class="text-center py-12">
+      <p class="text-gray-600 dark:text-gray-400">暂无标签</p>
+    </div>
+    {{- end }}
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

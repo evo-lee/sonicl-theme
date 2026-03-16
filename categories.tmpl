@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>所有分类 - {{ .blog_title }}</title>
+  <meta name="description" content="所有文章分类">
+  {{- if .settings.site_favicon }}
+  <link rel="icon" href="{{ .settings.site_favicon }}">
+  {{- end }}
+  {{- template "module/styles.tmpl" . }}
+</head>
+<body>
+  {{- template "module/header.tmpl" . }}
+
+  <main class="container-custom py-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">所有分类</h1>
+
+    {{- if .categories }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{- range .categories }}
+      <a href="{{ .fullPath }}" class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ .name }}</h2>
+        {{- if .description }}
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">{{ .description }}</p>
+        {{- end }}
+        <p class="text-sm text-gray-500 dark:text-gray-500">{{ .postCount }} 篇文章</p>
+      </a>
+      {{- end }}
+    </div>
+    {{- else }}
+    <div class="text-center py-12">
+      <p class="text-gray-600 dark:text-gray-400">暂无分类</p>
+    </div>
+    {{- end }}
+  </main>
+
+  {{- template "module/footer.tmpl" . }}
+</body>
+</html>

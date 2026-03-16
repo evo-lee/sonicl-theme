@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .container-custom {
+    @apply max-w-4xl mx-auto px-4;
+  }
+
+  .post-content {
+    @apply prose dark:prose-invert max-w-none;
+  }
+}
